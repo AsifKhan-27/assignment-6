@@ -65,9 +65,9 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 	        		<img style="border-radius:50%;" class="img-fluid w-50 p-1" src="${singleNews.author.img}">
 	        		<p class="fw-semibold pt-2 pl-2">${singleNews.author.name}</p>
 	        	</div>
-	        	<div class="d-flex">
+	        	<div class="d-flex ">
+	        		<i class="fa-regular fa-eye me-2 mt-1"></i>
 	        		<p class="fw-bold pe-1">${singleNews.total_view}</p>
-	        		<div class="fw-bold ps-1">Views</div>
 	        	</div>
 	        	<button onclick="loadNewsDetails('${singleNews._id}')" href="#" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#newsDetailModal">->
 	        	</button>	
