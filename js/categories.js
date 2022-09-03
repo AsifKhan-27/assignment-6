@@ -13,7 +13,7 @@ const displayCategories=(categories)=>{
 		// console.log(category.category_name);
 		const categoryNameDiv=document.createElement('div');
 		categoryNameDiv.innerHTML=`
-			<span>${category.category_name}</span>
+			<span id='${category.category_id}'>${category.category_name}</span>
 		`;
 		categoryNames.appendChild(categoryNameDiv);
 	}
