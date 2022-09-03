@@ -44,7 +44,7 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 	}	
 
 	// sort all news for category by views
-	
+
 	
 	// add all news for category
 	const allNewsContainer=document.getElementById('all-news-container');
@@ -53,6 +53,8 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 		// console.log(singleNews);
 		const newsDiv=document.createElement('div');
 		newsDiv.classList.add('col');
+		// newsDiv.classList.add('news-details');
+		newsDiv.setAttribute("id","news-details");
 		newsDiv.innerHTML=`
 		<div class="card p-4">
 	      <img src="${singleNews.thumbnail_url}" class="card-img-top" alt="...">
@@ -68,6 +70,8 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 	        		<p class="fw-bold pe-1">${singleNews.total_view}</p>
 	        		<div class="fw-bold ps-1">Views</div>
 	        	</div>
+	        	<button onclick="loadNewsDetails('')" href="#" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#newsDetailModal">->
+	        	</button>	
 	        </div>
 	      </div>
 	    </div>
@@ -77,7 +81,10 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 	}
 }
 
-// style="height:1rem, width:1rem, border-radius:50%;"
+
+const loadNewsDetails=()=>{
+
+}
 
 
 const toggleSpinner=isLoading=>{
@@ -92,7 +99,9 @@ const toggleSpinner=isLoading=>{
 }
 
 
-
+// document.getElementById('news-details').addEventListener('click',function(){
+// 	console.log('clicked');
+// });
 
 
 
