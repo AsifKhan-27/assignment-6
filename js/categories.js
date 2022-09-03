@@ -13,7 +13,7 @@ const displayCategories=(categories)=>{
 		// console.log(category.category_name);
 		const categoryNameDiv=document.createElement('div');
 		categoryNameDiv.innerHTML=`
-			<span onclick="loadAllNewsInCategory('${category.category_id}'), toggleSpinner(true)" id="${category.category_id}" class="fw-bold">${category.category_name}</span>
+			<span onclick="loadAllNewsInCategory('${category.category_id}','${category.category_name}'), toggleSpinner(true)" id="${category.category_id}" class="fw-bold">${category.category_name}</span>
 		`;
 		categoryNames.appendChild(categoryNameDiv);
 		// console.log(category.category_id);
@@ -22,18 +22,31 @@ const displayCategories=(categories)=>{
 
 loadCategories()
 
-const loadAllNewsInCategory=(id)=>{
-	const url=`https://openapi.programming-hero.com/api/news/category/${id}`;
+const loadAllNewsInCategory=(categoryId,categoryName)=>{
+	const url=`https://openapi.programming-hero.com/api/news/category/${categoryId}`;
 	console.log(url);
 	fetch(url)
 	.then(res=>res.json())
-	.then(data=>displayAllNewsInCategory(data.data))
+	.then(data=>displayAllNewsInCategory(data.data,categoryName))
 	.catch(error=>console.log(error))
 }
 
 
-const displayAllNewsInCategory=(news)=>{
-	// console.log(news);
+const displayAllNewsInCategory=(news,categoryName)=>{
+	// No of news items
+	const noOfNewsSection=document.getElementById('no-of-news');
+	if(news.length!==0){
+		noOfNewsSection.innerText=`${news.length} items found for category ${categoryName}`;
+	}
+	else{
+		noOfNewsSection.innerText=`No items found for category ${categoryName}`;
+		toggleSpinner(false);
+	}	
+
+	// sort all news for category by views
+	
+	
+	// add all news for category
 	const allNewsContainer=document.getElementById('all-news-container');
 	allNewsContainer.innerHTML=``;
 	for(const singleNews of news){
