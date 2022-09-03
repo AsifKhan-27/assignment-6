@@ -9,7 +9,7 @@ const loadCategories=()=>{
 const displayCategories=(categories)=>{
 	// console.log(categories);
 	const categoryNames=document.getElementById('category-names');
-	for(const category of categories){
+	categories.forEach(category=>{
 		// console.log(category.category_name);
 		const categoryNameDiv=document.createElement('div');
 		categoryNameDiv.innerHTML=`
@@ -17,7 +17,7 @@ const displayCategories=(categories)=>{
 		`;
 		categoryNames.appendChild(categoryNameDiv);
 		// console.log(category.category_id);
-	}
+	});
 }
 
 loadCategories()
@@ -50,7 +50,7 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 	// add all news for category
 	const allNewsContainer=document.getElementById('all-news-container');
 	allNewsContainer.innerHTML=``;
-	for(const singleNews of news){
+	news.forEach(singleNews=>{
 		// console.log(singleNews);
 		const newsDiv=document.createElement('div');
 		newsDiv.classList.add('col');
@@ -77,7 +77,7 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 		`;
 		allNewsContainer.appendChild(newsDiv);
 		toggleSpinner(false);
-	}
+	});
 }
 
 
