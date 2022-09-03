@@ -24,7 +24,6 @@ loadCategories()
 
 const loadAllNewsInCategory=(categoryId,categoryName)=>{
 	const url=`https://openapi.programming-hero.com/api/news/category/${categoryId}`;
-	console.log(url);
 	fetch(url)
 	.then(res=>res.json())
 	.then(data=>displayAllNewsInCategory(data.data,categoryName))
@@ -55,8 +54,6 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 		// console.log(singleNews);
 		const newsDiv=document.createElement('div');
 		newsDiv.classList.add('col');
-		// newsDiv.classList.add('news-details');
-		newsDiv.setAttribute("id","news-details");
 		newsDiv.innerHTML=`
 		<div class="card p-4">
 	      <img src="${singleNews.thumbnail_url}" class="card-img-top" alt="...">
@@ -72,7 +69,7 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 	        		<p class="fw-bold pe-1">${singleNews.total_view}</p>
 	        		<div class="fw-bold ps-1">Views</div>
 	        	</div>
-	        	<button onclick="loadNewsDetails('')" href="#" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#newsDetailModal">->
+	        	<button onclick="loadNewsDetails('${singleNews._id}')" href="#" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#newsDetailModal">->
 	        	</button>	
 	        </div>
 	      </div>
@@ -84,8 +81,27 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 }
 
 
-const loadNewsDetails=()=>{
 
+const loadNewsDetails=(id)=>{
+	const url=`https://openapi.programming-hero.com/api/news/${id}`;
+	fetch(url)
+	.then(res=>res.json())
+	.then(data=>displayNewsDetails(data.data[0]))
+	.catch(error=>console.log(error))
+}
+
+
+const displayNewsDetails=news=>{
+	const modalTitle=document.getElementById('newsDetailModalLabel');
+	modalTitle.innerText=news.title;
+	const newsDetails=document.getElementById('news-details');
+	newsDetails.innerHTML=`
+		<p>Publish Date: ${news.author.published_date? news.author.published_date:'No Publish Date Found'}</p>
+		<p>Total Views: ${news.total_view? news.total_view:'Number of Views Not Found'}</p>
+		<p>Author Name: ${news.author.name? news.author.name: 'No Author Name Found'}</p>
+		<img src="${news.thumbnail_url}">
+		<p>${news.details}</p>
+	`;
 }
 
 
@@ -101,9 +117,7 @@ const toggleSpinner=isLoading=>{
 }
 
 
-// document.getElementById('news-details').addEventListener('click',function(){
-// 	console.log('clicked');
-// });
+
 
 
 
@@ -111,11 +125,6 @@ const toggleSpinner=isLoading=>{
 // document.getElementById('01').addEventListener('click', function(){
 // 	loadAllNewsInCategory('01');
 // });
-
-
-
-// loadCategories()
-
 
 
 
