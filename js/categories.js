@@ -44,7 +44,9 @@ const displayAllNewsInCategory=(news,categoryName)=>{
 	}	
 
 	// sort all news for category by views
-
+	news.sort((a,b)=>{
+		return b.total_view-a.total_view;
+	});
 	
 	// add all news for category
 	const allNewsContainer=document.getElementById('all-news-container');
