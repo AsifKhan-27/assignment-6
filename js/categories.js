@@ -45,14 +45,15 @@ const displayAllNewsInCategory=(news)=>{
 	      <img src="${singleNews.thumbnail_url}" class="card-img-top" alt="...">
 	      <div class="card-body">
 	        <h5 class="card-title">${singleNews.title}</h5>
-	        <p class="card-text">${singleNews.details}</p>
+	        <p class="card-text news-text">${singleNews.details}</p>
 	        <div class="d-flex justify-content-between align-items-center">
 	        	<div class="d-flex align-items-center w-50">
 	        		<img style="border-radius:50%;" class="img-fluid w-50 p-1" src="${singleNews.author.img}">
 	        		<p class="fw-semibold pt-2 pl-2">${singleNews.author.name}</p>
 	        	</div>
 	        	<div class="d-flex">
-	        		<p class="fw-bold">${singleNews.total_view}</p>
+	        		<p class="fw-bold pe-1">${singleNews.total_view}</p>
+	        		<div class="fw-bold ps-1">Views</div>
 	        	</div>
 	        </div>
 	      </div>
